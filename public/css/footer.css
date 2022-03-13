@@ -1,0 +1,121 @@
+    footer {
+        width: 100%;
+        height: 2.5rem;
+    }
+    
+    footer {
+        background-color: rgb(54, 54, 54);
+        height: 93vh;
+        color: white;
+    }
+    
+    .footerabout {
+        height: 85%;
+    }
+    
+    .footertext {
+        width: 94%;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 90%;
+    }
+    
+    .about1 {
+        width: 30%;
+        line-height: 2rem;
+    }
+    
+    .about1 p {
+        font-family: 'Poppins', sans-serif;
+        font-weight: lighter;
+        font-size: 14.5px;
+        color: gray;
+    }
+    
+    .ab2 {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .ab2 ul li {
+        font-family: 'Poppins', sans-serif;
+        font-weight: lighter;
+        font-size: 14.5px;
+        color: gray;
+        list-style: none;
+        transition: transform 0.5s ease;
+        cursor: pointer;
+        float: left;
+    }
+    
+    .ab2 ul li:hover {
+        background-color: transparent;
+        color: rgba(243, 8, 67, 0.973);
+        transform: translateX(1vh);
+    }
+    
+    .ab2text ul {
+        width: 50%;
+    }
+    
+    .ab2text {
+        display: flex;
+        margin-top: 3vh;
+    }
+    
+    .copyright {
+        height: 15%;
+        width: 94%;
+        margin: auto;
+        border-top: 1px solid grey;
+        text-align: center;
+        padding: 5px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: lighter;
+        font-size: 14.5px;
+        color: gray;
+    }
+    
+    .ic5 {
+        background-color: rgba(223, 215, 217, 0.973);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        padding: 15px;
+    }
+    
+    @media only screen and (max-width: 700px) {
+        footer {
+            height: auto;
+        }
+        .subsform {
+            width: 90%;
+            padding: 0;
+        }
+        .formsubs {
+            width: 100%;
+        }
+        .formsubs input {
+            width: 100%;
+            height: 50px;
+        }
+        .footertext {
+            width: 94%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 95%;
+        }
+        .about1 {
+            display: none;
+        }
+        .ab2text {
+            flex-direction: column;
+        }
+        .copyright h3 {
+            font-size: 13px;
+        }
+    }

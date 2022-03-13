@@ -23,8 +23,16 @@ app.locals.baseURL = 'http://localhost:8080/';
  * var data = {};
  * data.view = 'home.ejs' (assign the relative path the views directory to render the home.ejs template)
  */
+
+  
 var home = require('./controllers/home');
 app.use('/', home);
+
+var login = require('./controllers/login');
+app.use('/', login);
+
+var register = require('./controllers/register');
+app.use('/', register);
 
 // Listen the server port
 server.listen('8080', () => console.log('Server is up and running at port 8080'));
