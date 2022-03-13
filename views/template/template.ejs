@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Online Secure Elections Web Application</title>
-        <!---CSS-->
-        <link rel="stylesheet" href="<%= baseURL + 'static/bootstrap/css/mdb.min.css' %>">
-        <link rel="stylesheet" href="<%= baseURL + 'static/css/main.css' %>">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Secure Elections Web Application</title>
+    <!---CSS-->
+    <link rel="stylesheet" href="<%= baseURL + 'static/css/header.css' %>">
+    <link rel="stylesheet" href="<%= baseURL + 'static/css/footer.css' %>">
+    <link rel="stylesheet" href="<%= baseURL + 'static/css/'+thisStyle+'.css' %>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-    <body>
-        <%- include('./header.ejs') %>
+<body>
+    <%- include('./header.ejs') %>
         <div id="content">
-            <%- include('../'+view) %>
+            <%- include('./'+view) %>
         </div>
         <%- include('./footer.ejs') %>
-        <!--Import Scripts-->
-        <script src="<%= baseURL + 'static/bootstrap/js/mdb.min.js' %>"></script>
-    </body>
+            <!--Import Scripts-->
+            <script src="<%= baseURL + 'static/bootstrap/js/mdb.min.js' %>"></script>
+</body>
 
 </html>

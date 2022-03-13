@@ -1,7 +1,135 @@
+button {
+    margin-right: 5vh;
+    width: 150px;
+    height: 50%;
+    background-color: #2a3a8d;
+    font-weight: 500;
+    color: #ffffff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 2px 3px 0 rgb(0 0 0 / 20%);
+    -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 3px 0 rgb(0 0 0 / 20%);
+    background-color: #2a3a8d;
+    padding-top: 14px;
+    padding-right: 24px;
+    padding-bottom: 14px;
+    padding-left: 24px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: 0.14px;
+    cursor: pointer;
+}
 
-footer {
-    position: absolute;
-    bottom: 0;
+#banner {
     width: 100%;
-    height: 2.5rem; 
+    height: 100vh;
+    border-bottom: 1px solid black;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/banner.jpg) no-repeat center;
+    background-size: cover;
+    color: white;
+    margin: 0px;
+    display: flex;
+    Justify-content: flex-start;
+    align-items: center;
+}
+
+#banner-info {
+    margin-left: 5%;
+    font-family: 'Acme', sans-serif;
+}
+
+#banner-info h1 {
+    font-size: 50px;
+}
+
+#banner-info h3 {
+    font-size: 26px;
+}
+
+#intro {
+    width: 90%;
+    margin-top: 8vh;
+    margin: auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#intro h1 {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+#intro h1:after {
+    content: "";
+    /* This is necessary for the pseudo element to work. */
+    display: block;
+    /* This will put the pseudo element on its own line. */
+    margin: 0 auto;
+    /* This will center the border. */
+    width: 20%;
+    /* Change this to whatever width you want. */
+    padding-top: 20px;
+    /* This creates some space between the element and the border. */
+    border-bottom: 4px solid #2a3a8d;
+    /* This creates the border. Replace black with whatever color you want. */
+}
+
+.intro-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 5vh;
+}
+
+.intro-content-header {
+    width: 100%;
+}
+
+.intro-img {
+    width: 30%;
+    height: 10%;
+}
+
+.intro-img img {
+    width: 100%;
+    height: 300px;
+}
+
+.intro-text {
+    width: 60%;
+    text-align: justify;
+}
+
+.intro-content p {
+    margin-top: 6vh;
+}
+
+.intro-more {
+    width: 100%;
+    margin-top: 5vh;
+}
+
+.intro-more img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Following CSS is for responsive page */
+
+@media only screen and (max-width: 700px) {
+    #intro h1 {
+        width: 95%;
+        font-size: 20px;
+    }
+    .intro-img,
+    .intro-text {
+        width: 100%;
+    }
+    #banner-info h1 {
+        font-size: 20px;
+    }
 }

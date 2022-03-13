@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
     var data = {};
-    data.view = 'home.ejs';
-    data.thisStyle = 'main',
+    data.view = 'login.ejs';
+    data.thisStyle = 'login',
     res.render('template/template', data);
 });
 
