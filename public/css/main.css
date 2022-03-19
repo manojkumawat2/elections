@@ -1,7 +1,116 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 
-footer {
+
+.admin-login-form {
+    max-width: 600px;
+    margin: 10vh auto;
+}
+
+.sidenav-toggle {
+    padding: 12px;
+    cursor: pointer;
+}
+
+.sidebar {
+    margin: 0;
+    width: 200px;
+    background-color: white;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    border-right: 1px solid rgb(218, 218, 218);
+}
+
+.sidebar-close {
+    padding: 12px 12px 12px 12px ;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    cursor: pointer;
+}
+
+.sidebar-menu .active {
+    background-color: blue;
+    color: white;
+}
+
+.sidebar-menu a {
+    display: block;
+    color: rgb(88, 88, 88);
+    padding: 12px 0px 12px 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sidebar-menu a:hover {
+    background-color: blue;
+    color: white;
+}
+
+#body {
+    margin-left: 200px;
+}
+
+.full-width-body {
+    margin-left: 0px !important;
+}
+
+.select2-container {
+    width: 100% !important;
+    z-index: 2000 !important;
+}
+
+.form_error_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.form_error_icon {
+    font-size: 50px;
+    color: red;
+}
+
+.form_error_msg {
+    padding: 12px;
+}
+
+#form_error {
+    margin-top: 30vh;
+}
+
+#form_success {
+    margin-top: 30vh;
+}
+
+.form_success_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.form_success_icon {
+    font-size: 50px;
+    color: green;
+}
+
+.form_success_msg {
+    padding: 12px;
+}
+
+.footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
     height: 2.5rem; 
+    display: block;
+}
+
+
+@media(max-width: 991px) {
+    #body {
+        margin-left: 0px;
+    }
+    .sidebar {
+        z-index: 5000;
+        display: none;
+    }
 }

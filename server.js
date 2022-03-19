@@ -1,9 +1,37 @@
-var express = require('express');
-var http = require('http');
-var app = express();
+const express = require('express');
+const http = require('http');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const csrf = require('csurf');
+const app = express();
+
+app.use(cookieParser());
+app.use(session({
+    secret: process.env.secret ? process.env.secret : "123654",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 60000,
+    }
+}));
+
+// // CSRF protection
+// const csrfMiddleware = csrf({ cookie: true });
+// app.use(csrfMiddleware);
+
+// app.use(function (req, res, next) {
+//     var token = req.csrfToken();
+//     res.locals.csrfToken = token;
+//     next();
+// });
+
 
 // Create a server
 var server = http.createServer(app);
+
+// Base url
+app.locals.baseURL = "localhost:8080/";
 
 // Set the templating engine
 app.set('view engine', 'ejs');
@@ -15,6 +43,11 @@ app.use('/static', express.static('public'));
 // Set global useable variables
 app.locals.baseURL = 'http://localhost:8080/';
 
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+
 // Import home routers
 /**
  * Template import guide
@@ -23,8 +56,17 @@ app.locals.baseURL = 'http://localhost:8080/';
  * var data = {};
  * data.view = 'home.ejs' (assign the relative path the views directory to render the home.ejs template)
  */
+
 var home = require('./controllers/home');
 app.use('/', home);
+
+// Admin router
+var admin = require('./controllers/admin');
+app.use('/admin', admin);
+
+// Authentication router
+var auth = require('./controllers/auth');
+app.use('/auth', auth);
 
 // Listen the server port
 server.listen('8080', () => console.log('Server is up and running at port 8080'));

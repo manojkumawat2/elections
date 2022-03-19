@@ -7,19 +7,81 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Online Secure Elections Web Application</title>
         <!---CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="<%= baseURL + 'static/bootstrap/css/mdb.min.css' %>">
+        <link href="<%= baseURL + 'static/summernote/summernote-bs4.min.css' %>" rel="stylesheet">
         <link rel="stylesheet" href="<%= baseURL + 'static/css/main.css' %>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     </head>
 
     <body>
-        <%- include('./header.ejs') %>
-        <div id="content">
-            <%- include('../'+view) %>
+        <div class="sidebar">
+            <div class="sidebar-close">
+                <i class="fas fa-times"></i> Close
+            </div>
+            <div class="sidebar-menu">
+                <a href="<%= baseURL + 'admin' %>" class="active"><i class="fas fa-home"></i> Home</a>
+                <a href="<%= baseURL + 'admin/manage_election' %>" class=""><i class="fas fa-home"></i> Manage
+                    Elections</a>
+                <a href="<%= baseURL + 'admin/create_election' %>" class=""><i class="fas fa-plus-circle"></i> Create
+                    Election</a>
+                <a href="<%= baseURL + 'admin/candidates' %>" class=""><i class="fas fa-user-check"></i> Candidates</a>
+            </div>
         </div>
-        <%- include('./footer.ejs') %>
+        <div id="body">
+            <%- include('./header.ejs') %>
+            <div id="content">
+                <%- include('../'+view) %>
+            </div>
+        </div>
+        <!-- Error Modal -->
+        <div class="modal fade" id="form_error" tabindex="-1" aria-labelledby="form_error_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body form_error_container">
+                        <div class="form_error_icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="form_error_msg">
+                            This is a error
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger btn-sm" data-mdb-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Success Modal -->
+        <div class="modal fade" id="form_success" tabindex="-1" aria-labelledby="form_success_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body form_success_container">
+                        <div class="form_success_icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="form_success_msg">
+                            This is a error
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-success form_success_link">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--Import Scripts-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="<%= baseURL + 'static/summernote/summernote-bs4.min.js' %>"></script>
         <script src="<%= baseURL + 'static/bootstrap/js/mdb.min.js' %>"></script>
+        <script src="<%= baseURL + 'static/js/base.js' %>"></script>
+        <% if(typeof js_files != 'undefined') { %>
+        <% for(let index=0; index < js_files.length; index++) { %>
+        <script src="<%= js_files[index] %>"></script>
+        <% } %>
+        <% } %>
     </body>
 
 </html>
