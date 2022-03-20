@@ -1,0 +1,23 @@
+<form class="admin-login-form border p-4" action="<%= baseURL+'auth/login' %>" method="post" novalidate>
+    <h2 class="login-form-heading text-primary fw-bold mb-4 text-center">
+        Admin Login
+    </h2>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="email-label"><i class="fas fa-user-alt"></i></span>
+        <input type="email" class="form-control" name="email" placeholder="email@example.com" aria-label="email@example.com"
+            aria-describedby="email" />
+    </div>
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="password-label"><i class="fas fa-unlock-alt"></i></span>
+        <input type="password" class="form-control" name="password" placeholder="********" aria-label="password"
+            aria-describedby="email" />
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="form_submit mt-3 btn btn-primary btn-block">Login in</button>
+</form>
+
+<script>
+    var baseURL = "<%= baseURL %>";
+</script>

@@ -1,0 +1,117 @@
+<div class="container mb-5 mt-5" style="overflow-x: scroll;">
+    <button type="submit" class="mb-3 btn btn-primary btn-rounded add_new_candidate_btn"><i class="fas fa-plus"></i> Add
+        Candidate</button>
+
+    <div class="input-group mt-3">
+        <span class="input-group-text" id="search-label"><i class="fas fa-search"></i></span>
+        <input type="email" class="form-control" id="candidate_search" name="candidate_search"
+            placeholder="Search Candidates" aria-label="Search Candidates" aria-describedby="email" />
+    </div>
+
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Name</th>
+                <th>Constituency</th>
+                <th>Mobile Number</th>
+                <th>Party</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="candidate_table_body">
+            <% for(let index = 0; index < candidates.length; index++) { %>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                            style="width: 45px; height: 45px" class="rounded-circle" />
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1"><%= candidates[index]['name'] %></p>
+                            <p class="text-muted mb-0"><%= candidates[index]['email'] %></p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1">
+                        <%= candidates[index]['constituency_name'].charAt(0).toUpperCase() + candidates[index]['constituency_name'].slice(1) %>
+                    </p>
+                </td>
+                <td>
+                    <%= candidates[index]['mobile_number'] %>
+                </td>
+                <td>
+                    <%= candidates[index]['party_name'] %>
+                </td>
+                <td>
+                    <button 
+                    type="button" 
+                    class="btn btn-link btn-sm btn-rounded candidate_edit" 
+                    data-candidate_id="<%= candidates[index]['id'] %>"
+                    data-candidate_name="<%= candidates[index]['name'] %>"
+                    data-candidate_email="<%= candidates[index]['email'] %>"
+                    data-mobile_number="<%= candidates[index]['mobile_number'] %>"
+                    data-party_name="<%= candidates[index]['party_name'] %>"
+                    data-constituency_id="<%= candidates[index]['constituency_id'] %>"
+                    >
+                        <i class="fas fa-edit fa-lg"></i>
+                    </button>
+                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                        <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                    </button>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addCandidateModal" tabindex="-1" aria-labelledby="addCandidateModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCandidateModalLabel">Add New Candidate</h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="<%= baseURL + 'admin/candidate_submit' %>" method="post" id="candidate_form">
+                    <input type="hidden" name="candidate_id" id="candidate_id" >
+                    <div class="mt-3">
+                        <label for="title" class="form-label">Candidate Name</label>
+                        <input type="text" class="form-control" name="name" id="name" aria-describedby="Name"
+                            placeholder="John">
+                    </div>
+                    <div class="mt-3">
+                        <label for="title" class="form-label">Candidate Email</label>
+                        <input type="text" class="form-control" name="email" id="email" aria-describedby="email"
+                            placeholder="John@example.com">
+                    </div>
+                    <div class="mt-3">
+                        <label for="title" class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" name="mobile_number" id="mobile_number"
+                            aria-describedby="mobile_number" placeholder="9999999999">
+                    </div>
+                    <div class="mt-3">
+                        <label for="title" class="form-label">Party Name</label>
+                        <input type="text" class="form-control" name="party_name" id="party_name"
+                            aria-describedby="party_name" placeholder="Paty Name">
+                    </div>
+
+                    <div class="mt-3">
+                        <label for="title" class="form-label">Select Constituency</label>
+                        <select class="form-select select_constituency" name="constituency"
+                            aria-label="Default select example" searchable="Search here..">
+                            <% for (let index = 0; index < constituencies.length; index++) { %>
+                            <option value="<%= constituencies[index].id %>"><%= constituencies[index].name %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <button type="submit" class="mt-3 btn btn-primary btn-rounded"><i class="fas fa-plus"></i> Add
+                        Candidate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
