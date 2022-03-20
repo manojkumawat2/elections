@@ -1,6 +1,5 @@
 $(document).ready(function () {
     validate_admin_login_form();
-    $('.select_constituency').select2();
     $('#summernote').summernote({
         placeholder: 'Enter Description',
         tabsize: 2,

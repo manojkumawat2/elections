@@ -16,6 +16,21 @@ class Candidate {
         });
     }
 
+    update_candidate(post_input) {
+        let sql = "UPDATE nominated_candidates SET name = ?, email = ?, mobile_number = ?, constituency_id = ?, party_name = ? WHERE id = ?";
+        let values = [post_input['name'], post_input['email'], post_input['mobile_number'], post_input['constituency'], post_input['party_name'], post_input['candidate_id']];
+        
+        return new Promise(function(resolve, reject) {
+            connection.query(sql, values, function(err, rows) {
+                if(err) {
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }
+            });
+        });
+    }
+
     get_all_candidates() {
         let query = "SELECT nominated_candidates.*, constituencies.name as constituency_name FROM nominated_candidates INNER JOIN constituencies ON nominated_candidates.constituency_id = constituencies.id";
         let values = [];

@@ -7,7 +7,14 @@ class CandidateHelper {
     
     async set_new_candidate(post_input, data) {
         const candidate_model = new Candidate();
-        const is_candidate_inserted = await candidate_model.set_candidate(post_input, data);
+        let is_candidate_inserted = false;
+
+        if(!post_input['candidate_id']) {
+            is_candidate_inserted = await candidate_model.set_candidate(post_input);
+        } else {
+            is_candidate_inserted = await candidate_model.update_candidate(post_input);
+        }
+        
         
         if(is_candidate_inserted) {
             data.success = 'success';

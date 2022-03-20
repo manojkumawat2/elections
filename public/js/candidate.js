@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $(document).ready(function () {
         $("#candidate_search").on("keyup", function () {
             var value = $(this).val().toLowerCase();
@@ -7,7 +8,33 @@ $(document).ready(function () {
             });
         });
     });
+
     validate_candidate_form();
+
+    $('.select_constituency').select2();
+
+    $('.candidate_edit').on('click', function(event) {
+        const constituency_id = $(this).attr('data-constituency_id');
+        $('#addCandidateModalLabel').text('Edit Candidate Detail');
+        $('#name').val($(this).attr('data-candidate_name'));
+        $('#candidate_id').val($(this).attr('data-candidate_id'));
+        $('#email').val($(this).attr('data-candidate_email'));
+        $('#mobile_number').val($(this).attr('data-mobile_number'));
+        $('#party_name').val($(this).attr('data-party_name'));
+        $(".select_constituency option[value=" + constituency_id + "]").attr("selected", true).trigger('change');
+        $('#addCandidateModal').modal('show');
+    });
+
+    $('.add_new_candidate_btn').on('click', () => {
+        $('#addCandidateModalLabel').text('Add New Candidate');
+        $('#name').val('');
+        $('#candidate_id').val('');
+        $('#email').val('');
+        $('#mobile_number').val('');
+        $('#party_name').val('');
+        $('#addCandidateModal').modal('show');
+    });
+
 });
 
 function validate_candidate_form() {
