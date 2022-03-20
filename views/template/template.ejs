@@ -20,12 +20,21 @@
                 <i class="fas fa-times"></i> Close
             </div>
             <div class="sidebar-menu">
-                <a href="<%= baseURL + 'admin' %>" class="active"><i class="fas fa-home"></i> Home</a>
-                <a href="<%= baseURL + 'admin/manage_election' %>" class=""><i class="fas fa-home"></i> Manage
-                    Elections</a>
-                <a href="<%= baseURL + 'admin/create_election' %>" class=""><i class="fas fa-plus-circle"></i> Create
-                    Election</a>
-                <a href="<%= baseURL + 'admin/candidates' %>" class=""><i class="fas fa-user-check"></i> Candidates</a>
+                <% if (typeof user_info != 'undefined') { %>
+                    <% if (user_info['type'] === 'admin') { %>
+                        <a href="<%= baseURL + 'admin' %>"><i class="fas fa-home"></i> Home</a>
+                        <a href="<%= baseURL + 'admin/manage_election' %>" class=""><i class="fas fa-home"></i> Manage
+                            Elections</a>
+                        <a href="<%= baseURL + 'admin/create_election' %>" class=""><i class="fas fa-plus-circle"></i> Create
+                            Election</a>
+                        <a href="<%= baseURL + 'admin/candidates' %>" class=""><i class="fas fa-user-check"></i> Candidates</a>
+                    <% } else if(user_info['type'] === 'voter') { %>
+                        
+                    <% } %>
+                <% } else { %>
+                    <a href="<%= baseURL + 'login' %>"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="<%= baseURL + 'register' %>"><i class="fas fa-plus-square"></i> Register</a>
+                <% } %>
             </div>
         </div>
         <div id="body">
@@ -61,7 +70,6 @@
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="form_success_msg">
-                            This is a error
                         </div>
                     </div>
                     <div class="modal-footer">

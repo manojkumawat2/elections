@@ -44,7 +44,7 @@ router.get('/create_election', require_admin_login, (req, res) => {
     res.render(template, data);
 });
 
-router.get('/candidates', async (req, res) => {
+router.get('/candidates', require_admin_login, async (req, res) => {
     var data = {};
     data.js_files = [
         baseURL+'static/js/candidate.js',
@@ -58,7 +58,7 @@ router.get('/candidates', async (req, res) => {
     res.render(template, data);
 });
 
-router.post('/candidate_submit', async (req, res) => {
+router.post('/candidate_submit', require_admin_login, async (req, res) => {
     var data = {};
     const v = new Validator(req.body, {
         name: 'required',

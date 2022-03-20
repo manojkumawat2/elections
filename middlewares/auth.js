@@ -21,6 +21,7 @@ const require_admin_login = async (req, res, next) => {
         res.redirect('/');
         return ;
     }
+    res.locals.user_info = user_info;
     next();
 }
 

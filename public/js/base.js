@@ -15,7 +15,7 @@ function form_error(error) {
 }
 
 function show_success_modal(successMsg, redirectLink) {
-    $('#form_success_msg').text(successMsg);
+    $('.form_success_msg').text(successMsg);
     $('.form_success_link').attr('href', redirectLink);
     $('#form_success').modal('show');
 }

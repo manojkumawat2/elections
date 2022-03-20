@@ -47,7 +47,7 @@ function validate_candidate_form() {
             $.ajax(url, {
                 data: data,
                 type: 'POST',
-                success: form_success,
+                success: candidate_form_success,
                 error: form_error,
             });
             return false;
@@ -55,9 +55,10 @@ function validate_candidate_form() {
     });
 }
 
-function form_success(data) {
+function candidate_form_success(data) {
     console.log(data);
     if (data.success == 'success') {
+        $('#addCandidateModal').modal('hide');
         show_success_modal(data.successMsg, '');
     } else {
         form_error(data.errorMsg);

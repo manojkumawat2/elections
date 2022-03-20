@@ -7,7 +7,7 @@
             <img src="<%= baseURL + 'static/images/logo.png' %> " height="35" alt="MDB Logo" loading="lazy" />
         </a>
         <div class="d-flex input-group w-auto">
-            <!-- Icon dropdown -->
+            <% if (typeof user_info != 'undefined' && user_info) { %>
             <ul class="navbar-nav d-flex flex-row">
                 <li class="nav-item dropdown me-3 me-lg-1">
                     <a class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
@@ -27,6 +27,7 @@
                     </ul>
                 </li>
             </ul>
+            <% } %>
         </div>
     </div>
 </nav>
