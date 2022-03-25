@@ -13,6 +13,10 @@ class Utils {
         let is_password_match = bcrypt.compareSync(password1, password2);
         return is_password_match;
     }
+
+    static getOTP() {
+        return Math.floor(Math.random()*1000000);
+    }
 }
 
 module.exports = Utils;
