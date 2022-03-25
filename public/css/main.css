@@ -39,8 +39,12 @@ body {
     display: block;
     color: rgb(88, 88, 88);
     padding: 12px 0px 12px 12px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
+}
+
+.sidebar-menu a i {
+    font-size: 20px;
 }
 
 .sidebar-menu a:hover {

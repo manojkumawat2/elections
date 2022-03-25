@@ -1,0 +1,52 @@
+<form id="voter_registration_form" class="admin-login-form border p-4" action="<%= baseURL+'registration' %>" method="post" novalidate>
+    <h2 class="login-form-heading text-primary fw-bold mb-4 text-center">
+        Voter Registration
+    </h2>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Full Name</label>
+        <input type="text" class="form-control" name="name" id="name" aria-describedby="Name"
+            placeholder="Full Name">
+    </div>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Email Address</label>
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="email"
+            placeholder="example@gmail.com">
+    </div>
+
+    <div class="input-group mt-3">
+        <button class="btn btn-outline-primary" type="button" id="email_verification_button">Send Email Verification Code</button>
+        <input type="text" class="form-control" name="email_verification_code" placeholder="">
+    </div>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" name="mobile_number" id="mobile_number" aria-describedby="email"
+            placeholder="9999999999">
+    </div>
+
+    <div class="input-group mt-3">
+        <button class="btn btn-outline-primary" type="button" id="mobile_verification_button">Send Mobile Verification Code</button>
+        <input type="text" class="form-control" name="mobile_verification_code" placeholder="">
+    </div>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Aadhar Card Number</label>
+        <input type="text" class="form-control" name="aadhar" id="aadhar" aria-describedby="aadhar"
+            placeholder="Aadhar Card Number">
+    </div>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Area Pin Code</label>
+        <input type="text" class="form-control" name="pincode" id="pincode" aria-describedby="email"
+            placeholder="pincode">
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="form_submit mt-3 btn btn-primary btn-block">Register</button>
+</form>
+
+<script>
+    var baseURL = "<%= baseURL %>";
+</script>
