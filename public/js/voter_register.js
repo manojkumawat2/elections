@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $(".select_constituency").chosen({no_results_text: "Oops, nothing found!"}); 
     $('#email_verification_button').on('click', () => {
         const email = $('#email').val();
         if(ValidateEmail(email)) {
@@ -12,15 +13,20 @@ $(document).ready(function() {
                 data: data,
                 type: 'POST',
                 success: (result) => {
-
+                    if(result.success == 'error') {
+                        alert("Please try again.");
+                    } else {
+                        alert("OTP sent successfully on you email address.");
+                    }
                 },
                 error: () => {
-
+                    alert("Please try again.");
                 }
             });
         }
         return false;
     });
+    validate_voter_registration_form();
 });
 
 function ValidateEmail(mail) 
@@ -35,7 +41,7 @@ function ValidateEmail(mail)
 
 
 function validate_voter_registration_form() {
-    $('.voter_registration_form').validate({
+    $('#voter_registration_form').validate({
         onfocusout: function (element) {
             $(element).valid();
         },
@@ -63,7 +69,14 @@ function validate_voter_registration_form() {
             $.ajax(url, {
                 data: data,
                 type: 'POST',
-                success: form_success,
+                success: (result) => {
+                    if(result.success == 'success') {
+                        alert(result.successMsg);
+                    } else if(result.success == 'error') {
+                        alert(result.errorMsg);
+                    }
+                    $(".form_submit").attr('disabled', false);
+                },
                 error: form_error,
             });
             return false;

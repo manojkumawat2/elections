@@ -1,4 +1,5 @@
 const Candidate = require("../modals/Candidate");
+const Otp = require("../modals/Otp");
 
 class CandidateHelper {
     constructor() {
@@ -30,7 +31,7 @@ class CandidateHelper {
     async get_all_candidates() {
         const candidate_model = new Candidate();
         let candidates = await candidate_model.get_all_candidates();
-        return candidates ?? [];
+        return candidates ? candidates : [];
     }
 }
 

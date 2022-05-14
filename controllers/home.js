@@ -6,7 +6,8 @@ const Utils = require('../helpers/Utils');
 const router = express.Router();
 const ejs = require('ejs');
 const Email = require('../helpers/Email');
-const { sendOtpToUser } = require('../helpers/OtpHelper');
+const { sendOtpToUser, validateOtp } = require('../helpers/OtpHelper');
+const UserHelper = require('../helpers/UserHelper');
 
 const template = 'template/template';
 const baseURL = 'http://localhost:8080/';
@@ -27,13 +28,52 @@ router.get('', (req, res) => {
     res.render('template/template', data);
 });
 
-router.get('/register', (req, res) => {
+router.get('/register', async (req, res) => {
     var data = {};
     data.js_files = [
-        baseURL + 'static/js/voter_register.js'
+        baseURL + 'static/js/voter_register.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js'
     ];
+    
+    data.constituencies = await Utils.get_constituencies();
     data.view = 'voter/register.ejs';
     res.render('template/template', data);
+});
+
+router.post('/register_submit', async (req, res) => {
+    var data = {};
+    
+    const post_input = req.body;
+    const v = new Validator(req.body, {
+        email: 'required|email',
+        name: 'required',
+        email_verification_code: 'required',
+        mobile_number: 'required',
+        aadhar: 'required',
+        constituency: 'required'
+    });
+    const matched = await v.check();
+    if(!matched) {
+        data.success = 'error';
+        data.status = 'validationError',
+        data.validationErrors = v.errors,
+        data.errorMsg = "All fields are mandatory.";
+        res.json(data);
+        return ;
+    }
+    console.log(post_input['otp']);
+    otp_valid = await validateOtp(post_input['email'], post_input['email_verification_code']);
+    if(!otp_valid) {
+        data.success = 'error';
+        data.errorMsg = 'Please enter a valid otp';
+        res.json(data);
+        return;
+    }
+
+    const user_helper = new UserHelper();
+
+    await user_helper.create_new_candidate(post_input, data);
+    res.json(data);
 });
 
 router.post('/new_otp', async (req, res) => {

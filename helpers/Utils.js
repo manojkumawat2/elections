@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const Constituency = require("../modals/Constituency");
 
 class Utils {
     static getHashedPassword(password) {
@@ -16,6 +17,17 @@ class Utils {
 
     static getOTP() {
         return Math.floor(Math.random()*1000000);
+    }
+    
+    static get_new_password() {
+        var randomPassword = Math.random().toString(36).slice(-8);
+        return randomPassword;
+    }
+
+    static async get_constituencies() {
+        const constituency_modal = new Constituency();
+        let constituencies_list = await constituency_modal.get_list_of_constituencies();
+        return constituencies_list;
     }
 }
 
