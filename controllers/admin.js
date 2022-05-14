@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const router = express.Router();
-const {require_admin_login, user_info, is_admin_already_logged_in} = require('../middlewares/auth');
+const {require_admin_login, user_info, is_already_logged_in} = require('../middlewares/auth');
 const AdminDashboardHelper = require('../helpers/AdminDashboardHelper');
 const { Validator } = require('node-input-validator');
 const CandidateHelper = require('../helpers/CandidateHelper');
@@ -29,7 +29,7 @@ router.get('', require_admin_login, (req, res) => {
     res.render('template/template', data);
 });
 
-router.get('/login', is_admin_already_logged_in, (req, res) => {
+router.get('/login', is_already_logged_in, (req, res) => {
     var data = {};
     data.js_files = [
         baseURL+'static/js/admin.js'

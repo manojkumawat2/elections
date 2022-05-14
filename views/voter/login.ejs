@@ -1,0 +1,24 @@
+<form id="voter_login_form" class="admin-login-form border p-4" action="<%= baseURL+'auth/login' %>" method="post" novalidate>
+    <h2 class="login-form-heading text-primary fw-bold mb-4 text-center">
+        Voter Login
+    </h2>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Username</label>
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="email"
+            placeholder="example@gmail.com">
+    </div>
+
+    <div class="mt-3">
+        <label for="title" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="password" aria-describedby="password"
+            placeholder="Password">
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="form_submit mt-3 btn btn-primary btn-block">Login</button>
+</form>
+
+<script>
+    var baseURL = "<%= baseURL %>";
+</script>

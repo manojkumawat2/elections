@@ -68,5 +68,8 @@ app.use('/admin', admin);
 var auth = require('./controllers/auth');
 app.use('/auth', auth);
 
+var voter = require('./controllers/voter');
+app.use('/voter', voter);
+
 // Listen the server port
 server.listen('8080', () => console.log('Server is up and running at port 8080'));

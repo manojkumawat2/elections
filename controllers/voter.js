@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const { require_voter_login } = require('../middlewares/auth');
 const router = express.Router();
 
 const template = 'template/template';
@@ -16,12 +17,12 @@ router.use(session({
     }
 }));
 
-router.get('', (req, res) => {
+router.get('', require_voter_login, (req, res) => {
     var data = {};
     data.js_files = [
         baseURL+'static/js/admin.js'
     ];
-    data.view = 'admin/dashboard.ejs';
+    data.view = 'voter/dashboard.ejs';
     res.render(template, data);
 });
 

@@ -25,6 +25,10 @@ router.post('/login', async (req, res) => {
     let post_input = req.body;
     const user_helper = new UserHelper(req);
     const user_info = await user_helper.login_user(post_input, data);
+    if(data.status == 'error') {
+        res.json(data);
+        return ;
+    }
     req.session.user = user_info.id;
     req.session.role = user_info.type;
     res.json(data);

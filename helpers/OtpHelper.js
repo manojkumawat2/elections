@@ -11,7 +11,6 @@ const sendOtpToUser = async (email, otp, type = 'mail') => {
 const validateOtp = async (email, otp) => {
     const otp_model = new Otp();
     latest_otp = await otp_model.get_latest_otp_by_email(email);
-    console.log(latest_otp.otp);
     if(latest_otp.otp == otp) {
         return true;
     } else {

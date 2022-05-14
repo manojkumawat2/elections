@@ -83,7 +83,6 @@ function validate_candidate_form() {
 }
 
 function candidate_form_success(data) {
-    console.log(data);
     if (data.success == 'success') {
         $('#addCandidateModal').modal('hide');
         show_success_modal(data.successMsg, '');

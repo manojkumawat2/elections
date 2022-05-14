@@ -66,8 +66,7 @@ class User {
                     if(rows.length > 0) {
 
                         let is_password_match = Utils.comparePassword(password, rows[0].password);
-                        
-                        if(true) {
+                        if(is_password_match) {
                             result.status = true;
                             result.message = "Login Successfully.";
                             result.user_info = rows[0];

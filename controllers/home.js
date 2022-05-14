@@ -8,6 +8,7 @@ const ejs = require('ejs');
 const Email = require('../helpers/Email');
 const { sendOtpToUser, validateOtp } = require('../helpers/OtpHelper');
 const UserHelper = require('../helpers/UserHelper');
+const {require_admin_login, user_info, is_already_logged_in} = require('../middlewares/auth');
 
 const template = 'template/template';
 const baseURL = 'http://localhost:8080/';
@@ -28,7 +29,19 @@ router.get('', (req, res) => {
     res.render('template/template', data);
 });
 
-router.get('/register', async (req, res) => {
+router.get('/login', is_already_logged_in, async (req, res) => {
+    var data = {};
+    data.js_files = [
+        baseURL + 'static/js/voter_login.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js'
+    ];
+    
+    data.constituencies = await Utils.get_constituencies();
+    data.view = 'voter/login.ejs';
+    res.render('template/template', data);
+});
+
+router.get('/register', is_already_logged_in, async (req, res) => {
     var data = {};
     data.js_files = [
         baseURL + 'static/js/voter_register.js',

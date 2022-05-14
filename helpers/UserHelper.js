@@ -14,12 +14,10 @@ class UserHelper {
         let email = post_input.email;
         let password = post_input.password;
 
-        password = Utils.getHashedPassword(password);
-
         const user_modal = new User();
 
         const user_modal_response = await user_modal.get_user_info_for_login(email, password);
-        
+        console.log(user_modal_response.status);
         if(!user_modal_response.status) {
             data.status = 'error';
             data.errorMsg = user_modal_response.message;
