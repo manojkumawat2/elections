@@ -4,6 +4,7 @@ const { get_new_password } = require("./Utils");
 const Utils = require("./Utils");
 const ejs = require('ejs');
 const Email = require("./Email");
+const Voter = require("../modals/Voter");
 
 class UserHelper {
 
@@ -43,13 +44,15 @@ class UserHelper {
         let new_password = Utils.get_new_password();
         let hashed_password = Utils.getHashedPassword(new_password);
         post_input['password'] = hashed_password;
-        let is_new_user_created = await user_model.set_new_user(post_input);
-
-        if(!is_new_user_created) {
+        let user_id = await user_model.set_new_user(post_input);
+        
+        if(user_id == -1) {
             data.success = 'error';
             data.errorMsg = "Please try again later.";
             return ;
         }
+        const voter_model = new Voter();
+        let voter_created = await voter_model.set_new_voter(post_input, user_id);
 
         data.success = 'success';
         data.successMsg = "Account successfully created. Please check you mail box!";
@@ -68,7 +71,7 @@ class UserHelper {
         });
         let mailOptions = {
             from: 'programmingbyte@gmail.com',
-            to: post_input['email'],
+            to: 'mkkumawat3333@gmail.com',
             subject: "Registration successful",
             html: emailTemplate
         };

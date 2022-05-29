@@ -33,6 +33,12 @@ class CandidateHelper {
         let candidates = await candidate_model.get_all_candidates();
         return candidates ? candidates : [];
     }
+
+    async get_candidates(constituencyId) {
+        const candidate_model = new Candidate();
+        let candidates = await candidate_model.get_candidates(constituencyId);
+        return candidates ? candidates : [];
+    }
 }
 
 module.exports = CandidateHelper;

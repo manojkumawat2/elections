@@ -1,0 +1,1 @@
+const votes = artifacts.require('Vote');

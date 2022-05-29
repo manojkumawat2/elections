@@ -46,6 +46,23 @@ class Candidate {
             })
         });
     }
+
+    get_candidates(constituencyId) {
+        let query = "SELECT nominated_candidates.id, nominated_candidates.name as candidate_name FROM nominated_candidates WHERE nominated_candidates.constituency_id = ?";
+        let values = [constituencyId];
+        return new Promise(function(resolve, reject) {
+            connection.query(query, values, function(err, rows) {
+                if(err) {
+                    console.log(err);
+                    return resolve(null);
+                }
+                if(rows.length > 0) {
+                    return resolve(rows);
+                }
+                return resolve(null);
+            })
+        });
+    }
 }
 
 module.exports = Candidate;

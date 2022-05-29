@@ -32,8 +32,7 @@ router.get('', (req, res) => {
 router.get('/login', is_already_logged_in, async (req, res) => {
     var data = {};
     data.js_files = [
-        baseURL + 'static/js/voter_login.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js'
+        baseURL + 'static/js/voter_login.js'
     ];
     
     data.constituencies = await Utils.get_constituencies();
@@ -44,8 +43,7 @@ router.get('/login', is_already_logged_in, async (req, res) => {
 router.get('/register', is_already_logged_in, async (req, res) => {
     var data = {};
     data.js_files = [
-        baseURL + 'static/js/voter_register.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js'
+        baseURL + 'static/js/voter_register.js'
     ];
     
     data.constituencies = await Utils.get_constituencies();
@@ -127,7 +125,7 @@ router.post('/new_otp', async (req, res) => {
         });
         let mailOptions = {
             from: 'programmingbyte@gmail.com',
-            to: post_input['email'],
+            to: 'mkkumawat3333@gmail.com',
             subject: "Confirmation OTP for E-Votal Portal",
             html: emailTemplate
         };

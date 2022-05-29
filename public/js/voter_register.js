@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#email_verification_button').on('click', () => {
         const email = $('#email').val();
         if(ValidateEmail(email)) {
-            let url = baseURL + 'new_otp';
+            let url = baseURL + 'new_otp'; 
             let data = {
                 'email': email,
                 'type': 'mail'

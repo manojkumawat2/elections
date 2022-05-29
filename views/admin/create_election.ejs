@@ -1,24 +1,38 @@
 <div class="container card mt-5">
     <h4>Create A New Election</h4>
     <hr>
-    <form id="add_new_election" action="" method="post">
+    <form id="add_new_election" action="<%= baseURL + 'admin/create_election_submit' %>" method="post">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="Title">
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="Title">
         </div>
         <div class="mb-3">
             <label for="title" class="form-label">Select Constituency</label>
-            <select class="form-select select_constituency" aria-label="Default select example" searchable="Search here..">
-                <option selected>Select Constituency</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select select_constituency" name="constituency"
+                aria-label="Default select example" searchable="Search here..">
+                <% for (let index = 0; index < constituencies.length; index++) { %>
+                <option value="<%= constituencies[index].id %>"><%= constituencies[index].name %></option>
+                <% } %>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Select Candidates</label>
+            <select class="form-select select_candidates" name="candidates"
+                aria-label="Default select example" multiple searchable="Search here..">
             </select>
         </div>
         <div class="mb-3">
             <label for="title" class="form-label">Election Description</label>
             <textarea id="summernote" name="description"></textarea>
         </div>
-        <button type="button" class="mb-3 btn btn-primary btn-rounded"><i class="fas fa-plus"></i> Create Election</button>
+        <div class="mb-3">
+            <label for="title" class="form-label">Start Date</label>
+            <input type="date" class="form-control" name="start_time" id="start_time" aria-describedby="Start Date">
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">End Date</label>
+            <input type="date" class="form-control" name="end_time" id="end_time" aria-describedby="End Date">
+        </div>
+        <button type="submit" class="mb-3 btn btn-primary btn-rounded"><i class="fas fa-plus"></i> Create Election</button>
     </form>
 </div>

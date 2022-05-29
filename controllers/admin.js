@@ -6,6 +6,7 @@ const {require_admin_login, user_info, is_already_logged_in} = require('../middl
 const AdminDashboardHelper = require('../helpers/AdminDashboardHelper');
 const { Validator } = require('node-input-validator');
 const CandidateHelper = require('../helpers/CandidateHelper');
+const ElectionHelper = require('../helpers/ElectionHelper');
 
 const template = 'template/template';
 const baseURL = 'http://localhost:8080/';
@@ -38,10 +39,32 @@ router.get('/login', is_already_logged_in, (req, res) => {
     res.render(template, data);
 });
 
-router.get('/create_election', require_admin_login, (req, res) => {
+router.get('/create_election', require_admin_login, async (req, res) => {
     var data = {};
+    data.js_files = [
+        baseURL+'static/js/create_election.js'
+    ];
     data.view = 'admin/create_election.ejs';
+    const admin_dashboard_helper = new AdminDashboardHelper();
+    data.constituencies = await admin_dashboard_helper.get_constituencies();
     res.render(template, data);
+});
+
+router.post('/create_election_submit', require_admin_login, async (req, res) => {
+    var data = {};
+    console.log(req.body);  
+    var post_input = req.body;
+    const election_helper = new ElectionHelper();
+    await election_helper.create_new_election(post_input, data);
+    res.json(data);
+});
+
+router.get('/get_candidates/:constituencyId', require_admin_login, async (req, res) => {
+    var constituencyId = req.params.constituencyId;
+    var data = {};
+    const candidate_helper = new CandidateHelper();
+    data.candidates = await candidate_helper.get_candidates(constituencyId);
+    res.json(data);
 });
 
 router.get('/candidates', require_admin_login, async (req, res) => {

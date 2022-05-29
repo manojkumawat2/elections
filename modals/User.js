@@ -26,10 +26,11 @@ class User {
         
         return new Promise(function(resolve, reject) {
             connection.query(sql, values, function(err, rows) {
-                if(err) {
-                    resolve(false);
+                if (err) {
+                    console.log(err);
+                    resolve(-1);
                 } else {
-                    resolve(true);
+                    resolve(rows.insertId);
                 }
             });
         });
