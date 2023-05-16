@@ -48,7 +48,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 
-// Import home routers
 /**
  * Template import guide
  * eg. If you have create a template in ejs view/home.ejs
